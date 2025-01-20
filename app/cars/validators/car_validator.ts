@@ -18,7 +18,7 @@ export const carValidator = vine.compile(
     speed: vine.number().optional(),
     acceleration: vine.number().optional(),
     mileage: vine.number().optional(),
-    createdAt: vine.date(),
-    updatedAt: vine.date(),
+    createdAt: vine.string(),
+    updatedAt: vine.string(),
   })
 )

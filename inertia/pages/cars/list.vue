@@ -15,15 +15,15 @@ const { vm, activePage } = defineProps<{
   activePage: number
 }>()
 
-// Indicateur de chargement pour le bouton "Rafraîchir"
+
 const isFetching = ref(false)
 
-// Fonction pour gérer la pagination
+
 function onPageChange(page: number) {
   router.visit(`/cars?page=${page}`, { preserveScroll: true })
 }
 
-// Fonction pour déclencher le fetch
+
 function fetchCars() {
   isFetching.value = true
   router.visit('/cars/fetch', {
@@ -42,7 +42,6 @@ function fetchCars() {
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <h1 class="text-3xl font-bold mb-6 text-gray-800">Liste des voitures</h1>
 
-    <!-- Bouton pour rafraîchir les données -->
     <div class="mb-4">
       <button
         class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded disabled:bg-gray-400"

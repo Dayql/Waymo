@@ -6,18 +6,22 @@ export default class FetchCarsController {
   public async fetch({ response, request }: HttpContext) {
     const fetchCars = new FetchCars()
 
+    // Récupération des voitures depuis l'API
     const cars = await fetchCars.handle()
 
     for (const car of cars) {
+      const mappedCar = { ...car, id: car._id }
+      delete mappedCar._id
+
+      // Validation des données
       const data = await request.validateUsing(carValidator, {
-        data: car,
+        data: mappedCar,
       })
 
+      // Enregistrement dans la base
       await fetchCars.storeCar(data)
     }
 
-    return response.ok({
-      message: 'Cars fetched and stored successfully!',
-    })
+    return response.redirect().toPath('/cars')
   }
 }
